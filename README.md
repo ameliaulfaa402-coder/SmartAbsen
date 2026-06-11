@@ -1,2 +1,2 @@
-# drinkpos
-DrinkPOS adalah sistem penjualan minuman berbasis java GUI yang digunakan untuk membantu proses transaksi pada coffe shop, coffe, atau kedai minuman.
+# AbsenKu
+AbsenKu adalah aplikasi yang dirancang untuk membantu proses pencatatan dan pengelolaan kehadiran siswa secara digital. Melalui aplikasi ini, pengguna dapat mengelola data siswa, mencatat kehadiran harian dengan status hadir, izin, sakit, atau alfa, serta melihat riwayat dan rekapiyulasi absensi. Sistem ini bertujuan untuk mempermudah proses administrasi kehadiran, meningkatkan ketepatan pencatatan data, dan mempercepat pembuatan laporan absensi siswa.    
