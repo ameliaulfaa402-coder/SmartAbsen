@@ -1,2 +1,2 @@
 # SmartAbsen
-AbsenKu adalah aplikasi yang dirancang untuk membantu proses pencatatan dan pengelolaan kehadiran siswa secara digital. Melalui aplikasi ini, pengguna dapat mengelola data siswa, mencatat kehadiran harian dengan status hadir, izin, sakit, atau alfa, serta melihat riwayat dan rekapiyulasi absensi. Sistem ini bertujuan untuk mempermudah proses administrasi kehadiran, meningkatkan ketepatan pencatatan data, dan mempercepat pembuatan laporan absensi siswa.    
+SmartAbsen adalah aplikasi absensi siswa berbasis Java dan MySQL yang digunakan untuk mengelola data siswa, mencatat kehadiran, dan melihat laporan absensi secara digital.
