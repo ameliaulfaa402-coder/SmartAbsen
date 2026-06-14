@@ -3,13 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package from;
-
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+import java.text.SimpleDateFormat;
 /**
  *
  * @author LENOVO SLIM 3
  */
 public class AbsensiForm extends javax.swing.JFrame {
-    
+    private DefaultTableModel model;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AbsensiForm.class.getName());
 
     /**
@@ -17,6 +19,12 @@ public class AbsensiForm extends javax.swing.JFrame {
      */
     public AbsensiForm() {
         initComponents();
+        
+        setTitle("DATA ABSENSI");
+        setLocationRelativeTo(null);
+        
+        model = (DefaultTableModel)tableAbsen.getModel();
+        model.setRowCount(0);
     }
 
     /**
@@ -32,16 +40,16 @@ public class AbsensiForm extends javax.swing.JFrame {
         labelNamaSiswa = new javax.swing.JLabel();
         cmbNamaSiswa = new javax.swing.JComboBox<>();
         labelTanggal = new javax.swing.JLabel();
-        fieldTanggal = new javax.swing.JTextField();
         labelStatus = new javax.swing.JLabel();
         cmbStatus = new javax.swing.JComboBox<>();
         labelKeterangan = new javax.swing.JLabel();
-        fieldKeterangan = new javax.swing.JTextField();
         buttonSimpan = new javax.swing.JButton();
         buttonUbah = new javax.swing.JButton();
         buttonHapus = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAbsen = new javax.swing.JTable();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 600));
@@ -50,34 +58,47 @@ public class AbsensiForm extends javax.swing.JFrame {
 
         labelNamaSiswa.setText("Nama Siswa");
 
-        cmbNamaSiswa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbNamaSiswa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "Ahmad Fauzi", "Siti Aisyah", "Muhammad Rizky", "Nabila Putri", "Andi Saputra", "Dewi Lestari", "Fajar Ramadhan", "Nurul Hidayah", "Budi Santoso", "Rina Oktaviani", "Yoga Pratama", "Aulia Rahma", "Iqbal Maulana", "Putri Amelia", "Reza Akbar", "Annisa Zahra", "Dimas Nugraha", "Citra Maharani", "Arif Setiawan", "Nadya Safitri", "Rfi Hidayat", "Laila Fitriani", "Galang Prakoso", "Maya Prakoso", "Maya Salsabila", "Alvin Saputra", " ", " " }));
 
         labelTanggal.setText("Tanggal");
 
         labelStatus.setText("Status");
 
-        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hadir", "Sakit", "Izin ", "Alfa" }));
 
-        labelKeterangan.setText("Keterangan");
+        labelKeterangan.setText("Kelas");
 
         buttonSimpan.setText("Simpan");
+        buttonSimpan.addActionListener(this::buttonSimpanActionPerformed);
 
         buttonUbah.setText("Ubah");
+        buttonUbah.addActionListener(this::buttonUbahActionPerformed);
 
         buttonHapus.setText("Hapus");
+        buttonHapus.addActionListener(this::buttonHapusActionPerformed);
 
         tableAbsen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nama", "Tanggal", "Status"
+                "Nama", "Tanggal", "Status", "Kelas"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tableAbsen);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "X IPA 1", "X IPA 2", "XI IPA 1", "XI IPA 2", "XII IPA 1", "XII IPA 2", " " }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,11 +123,11 @@ public class AbsensiForm extends javax.swing.JFrame {
                                             .addComponent(labelCatatAbsen))
                                         .addGap(93, 93, 93))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(cmbNamaSiswa, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(fieldTanggal, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cmbStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(fieldKeterangan))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(cmbNamaSiswa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(cmbStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(40, 40, 40)))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
@@ -129,16 +150,16 @@ public class AbsensiForm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(labelTanggal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(labelStatus)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(labelKeterangan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSimpan)
@@ -150,6 +171,67 @@ public class AbsensiForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSimpanActionPerformed
+    String nama = cmbNamaSiswa.getSelectedItem().toString();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String tanggal = sdf.format(jDateChooser1.getDate());
+    String status = cmbStatus.getSelectedItem().toString();
+    String kelas = jComboBox1.getSelectedItem().toString();
+
+    model.addRow(new Object[]{
+        nama,
+        tanggal,
+        status,
+        kelas
+    });
+
+    JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+
+    }//GEN-LAST:event_buttonSimpanActionPerformed
+
+    private void buttonHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusActionPerformed
+        // TODO add your handling code here:String nama = cmbNamaSiswa.getSelectedItem().toString();
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String tanggal = sdf.format(jDateChooser1.getDate());
+
+    String status = cmbStatus.getSelectedItem().toString();
+    String kelas = jComboBox1.getSelectedItem().toString();
+    
+    int baris = tableAbsen.getSelectedRow();
+
+    if (baris != -1) {
+        model.removeRow(baris);
+        JOptionPane.showMessageDialog(this, "Data berhasil dihapus");
+    } else {
+        JOptionPane.showMessageDialog(this, "Pilih data yang akan dihapus");
+    }
+    }//GEN-LAST:event_buttonHapusActionPerformed
+
+    private void buttonUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUbahActionPerformed
+
+
+    int baris = tableAbsen.getSelectedRow();
+
+    if (baris != -1) {
+
+        model.setValueAt(cmbNamaSiswa.getSelectedItem().toString(), baris, 0);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        model.setValueAt(sdf.format(jDateChooser1.getDate()), baris, 1);
+
+        model.setValueAt(cmbStatus.getSelectedItem().toString(), baris, 2);
+
+        model.setValueAt(jComboBox1.getSelectedItem().toString(), baris, 3);
+
+        JOptionPane.showMessageDialog(this, "Data berhasil diubah");
+
+    } else {
+        JOptionPane.showMessageDialog(this, "Pilih data yang akan diubah");
+    }
+
+    }//GEN-LAST:event_buttonUbahActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,8 +264,8 @@ public class AbsensiForm extends javax.swing.JFrame {
     private javax.swing.JButton buttonUbah;
     private javax.swing.JComboBox<String> cmbNamaSiswa;
     private javax.swing.JComboBox<String> cmbStatus;
-    private javax.swing.JTextField fieldKeterangan;
-    private javax.swing.JTextField fieldTanggal;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCatatAbsen;
     private javax.swing.JLabel labelKeterangan;

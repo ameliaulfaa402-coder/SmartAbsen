@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package from;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,6 +18,9 @@ public class DashboardForm extends javax.swing.JFrame {
      */
     public DashboardForm() {
         initComponents();
+        
+        setTitle("Beranda Utama");
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -69,12 +73,15 @@ public class DashboardForm extends javax.swing.JFrame {
 
         buttonDataAbsensi.setBackground(new java.awt.Color(0, 102, 255));
         buttonDataAbsensi.setText("DATA ABSENSI");
+        buttonDataAbsensi.addActionListener(this::buttonDataAbsensiActionPerformed);
 
         buttonDataSiswa.setBackground(new java.awt.Color(0, 102, 255));
         buttonDataSiswa.setText("DATA SISWA");
+        buttonDataSiswa.addActionListener(this::buttonDataSiswaActionPerformed);
 
         buttonLogout.setBackground(new java.awt.Color(255, 0, 0));
         buttonLogout.setText("Logout");
+        buttonLogout.addActionListener(this::buttonLogoutActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,8 +124,36 @@ public class DashboardForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonDataKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDataKelasActionPerformed
-        // TODO add your handling code here:
+
+    new KelasForm().setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_buttonDataKelasActionPerformed
+
+    private void buttonDataSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDataSiswaActionPerformed
+
+    new SiswaForm().setVisible(true);
+    this.dispose();
+    }//GEN-LAST:event_buttonDataSiswaActionPerformed
+
+    private void buttonDataAbsensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDataAbsensiActionPerformed
+        new AbsensiForm().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_buttonDataAbsensiActionPerformed
+
+    private void buttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogoutActionPerformed
+
+    int jawab = JOptionPane.showConfirmDialog(
+            this,
+            "Yakin ingin logout?",
+            "Konfirmasi Logout",
+            JOptionPane.YES_NO_OPTION);
+
+    if (jawab == JOptionPane.YES_OPTION) {
+        new LoginForm().setVisible(true);
+        this.dispose();
+    }
+
+    }//GEN-LAST:event_buttonLogoutActionPerformed
 
     /**
      * @param args the command line arguments

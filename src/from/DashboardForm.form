@@ -130,6 +130,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="DATA ABSENSI"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDataAbsensiActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonDataSiswa">
       <Properties>
@@ -138,6 +141,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="DATA SISWA"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDataSiswaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonLogout">
       <Properties>
@@ -146,6 +152,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Logout"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonLogoutActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

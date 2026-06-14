@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package from;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -10,14 +13,22 @@ package from;
  */
 public class SiswaForm extends javax.swing.JFrame {
     
+    private DefaultTableModel model;
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SiswaForm.class.getName());
 
     /**
      * Creates new form SiswaForm
      */
     public SiswaForm() {
-        initComponents();
-    }
+    initComponents();
+
+    setTitle("Data Siswa");
+    setLocationRelativeTo(null);
+
+    model = (DefaultTableModel) tableSiswa.getModel();
+    model.setRowCount(0);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,6 +39,7 @@ public class SiswaForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         labelDataSiswa = new javax.swing.JLabel();
         labelNISN = new javax.swing.JLabel();
         fieldNISN = new javax.swing.JTextField();
@@ -41,6 +53,8 @@ public class SiswaForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableSiswa = new javax.swing.JTable();
 
+        jTextField1.setText("jTextField1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 600));
 
@@ -52,13 +66,16 @@ public class SiswaForm extends javax.swing.JFrame {
 
         labelKelas.setText("Kelas");
 
-        cmbKelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbKelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "X IPA 1", "X IPA 2", "XI IPA 1", "XI IPA 2", "XII IPA 1", "XII IPA 2" }));
 
         buttonSimpan.setText("Simpan");
+        buttonSimpan.addActionListener(this::buttonSimpanActionPerformed);
 
         buttonUbah.setText("Ubah");
+        buttonUbah.addActionListener(this::buttonUbahActionPerformed);
 
         buttonHapus.setText("Hapus");
+        buttonHapus.addActionListener(this::buttonHapusActionPerformed);
 
         tableSiswa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,6 +150,55 @@ public class SiswaForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSimpanActionPerformed
+
+    String nisn = fieldNISN.getText();
+    String nama = fieldNamaLengkap.getText();
+    String kelas = cmbKelas.getSelectedItem().toString();
+
+    model.addRow(new Object[]{
+        nisn,
+        nama,
+        kelas
+    });
+
+    JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+
+    fieldNISN.setText("");
+    fieldNamaLengkap.setText("");
+    cmbKelas.setSelectedIndex(0);
+
+    }//GEN-LAST:event_buttonSimpanActionPerformed
+
+    private void buttonUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUbahActionPerformed
+
+    int baris = tableSiswa.getSelectedRow();
+
+    if (baris != -1) {
+
+        model.setValueAt(fieldNISN.getText(), baris, 0);
+        model.setValueAt(fieldNamaLengkap.getText(), baris, 1);
+        model.setValueAt(cmbKelas.getSelectedItem().toString(), baris, 2);
+
+        JOptionPane.showMessageDialog(this, "Data berhasil diubah");
+
+    } else {
+        JOptionPane.showMessageDialog(this, "Pilih data terlebih dahulu");
+    }
+
+    }//GEN-LAST:event_buttonUbahActionPerformed
+
+    private void buttonHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusActionPerformed
+    int baris = tableSiswa.getSelectedRow();
+
+    if (baris != -1) {
+        model.removeRow(baris);
+        JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+    } else {
+        JOptionPane.showMessageDialog(null, "Pilih data terlebih dahulu");
+    }
+    }//GEN-LAST:event_buttonHapusActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -166,6 +232,7 @@ public class SiswaForm extends javax.swing.JFrame {
     private javax.swing.JTextField fieldNISN;
     private javax.swing.JTextField fieldNamaLengkap;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelDataSiswa;
     private javax.swing.JLabel labelKelas;
     private javax.swing.JLabel labelNISN;

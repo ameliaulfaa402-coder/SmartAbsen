@@ -76,6 +76,7 @@ public class LoginForm extends javax.swing.JFrame {
         labelLupaPassword.setText("Lupa Kata Sandi?");
 
         buttonLogout.setText("KELUAR");
+        buttonLogout.addActionListener(this::buttonLogoutActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -164,6 +165,10 @@ public class LoginForm extends javax.swing.JFrame {
     }
     
     }//GEN-LAST:event_buttonLoginActionPerformed
+
+    private void buttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogoutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonLogoutActionPerformed
 
     /**
      * @param args the command line arguments
