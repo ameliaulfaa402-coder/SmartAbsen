@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package from;
+import model.KelolaData;
 import java.sql.Connection;
 import koneksi.koneksi;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author LENOVO SLIM 3
  */
-public class KelasForm extends javax.swing.JFrame {
+public class KelasForm extends javax.swing.JFrame implements KelolaData {
     
     Connection conn;
     
@@ -304,4 +305,19 @@ public class KelasForm extends javax.swing.JFrame {
     private javax.swing.JLabel labelNamaKelas;
     private javax.swing.JTable tableKelas;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void simpan() {
+        buttonSimpanActionPerformed(null); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void ubah() {
+        buttonUbahActionPerformed(null); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void hapus() {
+        buttonHapusActionPerformed(null); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
