@@ -210,8 +210,6 @@ public class AbsensiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonHapusActionPerformed
 
     private void buttonUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUbahActionPerformed
-
-
     int baris = tableAbsen.getSelectedRow();
 
     if (baris != -1) {
@@ -230,6 +228,16 @@ public class AbsensiForm extends javax.swing.JFrame {
     } else {
         JOptionPane.showMessageDialog(this, "Pilih data yang akan diubah");
     }
+}   
+    private void bersih() {
+    cmbNamaSiswa.setSelectedIndex(0);
+    cmbStatus.setSelectedIndex(0);
+    jComboBox1.setSelectedIndex(0);
+    jDateChooser1.setDate(null);
+}
+
+    private void tampilData() {
+
 
     }//GEN-LAST:event_buttonUbahActionPerformed
 

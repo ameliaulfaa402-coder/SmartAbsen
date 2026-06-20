@@ -3,12 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package from;
+import java.sql.Connection;
+import koneksi.koneksi;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author LENOVO SLIM 3
  */
 public class KelasForm extends javax.swing.JFrame {
+    
+    Connection conn;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(KelasForm.class.getName());
 
@@ -17,6 +26,11 @@ public class KelasForm extends javax.swing.JFrame {
      */
     public KelasForm() {
         initComponents();
+        
+        setTitle("Sistem Informasi Kelas");
+        setLocationRelativeTo(null);
+        
+        conn = koneksi.getKoneksi();
     }
 
     /**
@@ -35,7 +49,6 @@ public class KelasForm extends javax.swing.JFrame {
         fieldNamaKelas = new javax.swing.JTextField();
         labelAksi = new javax.swing.JLabel();
         buttonSimpan = new javax.swing.JButton();
-        buttonBersih = new javax.swing.JButton();
         buttonUbah = new javax.swing.JButton();
         buttonHapus = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -53,12 +66,13 @@ public class KelasForm extends javax.swing.JFrame {
         labelAksi.setText("Aksi:");
 
         buttonSimpan.setText("Simpan");
-
-        buttonBersih.setText("Bersih");
+        buttonSimpan.addActionListener(this::buttonSimpanActionPerformed);
 
         buttonUbah.setText("Ubah");
+        buttonUbah.addActionListener(this::buttonUbahActionPerformed);
 
         buttonHapus.setText("Hapus");
+        buttonHapus.addActionListener(this::buttonHapusActionPerformed);
 
         tableKelas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,8 +99,7 @@ public class KelasForm extends javax.swing.JFrame {
                     .addComponent(labelIdKelas)
                     .addComponent(labelInputData)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonBersih)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(78, 78, 78)
                         .addComponent(buttonHapus))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonSimpan)
@@ -120,15 +133,138 @@ public class KelasForm extends javax.swing.JFrame {
                             .addComponent(buttonSimpan)
                             .addComponent(buttonUbah))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buttonBersih)
-                            .addComponent(buttonHapus)))
+                        .addComponent(buttonHapus))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSimpanActionPerformed
+    String sql = "INSERT INTO kelas(id_kelas,nama_kelas) VALUES (?,?)";
+
+    try {
+        PreparedStatement pst = conn.prepareStatement(sql);
+
+        pst.setString(1, fieldIdKelas.getText());
+        pst.setString(2, fieldNamaKelas.getText());
+
+        pst.executeUpdate();
+
+        JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+
+        tampilData();
+        bersih();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, e.getMessage());
+    }
+}  
+    private void bersih() {
+    fieldIdKelas.setText("");
+    fieldNamaKelas.setText("");
+    }
+    
+    private void tampilData() {
+        DefaultTableModel model = new DefaultTableModel();
+
+    model.addColumn("ID Kelas");
+    model.addColumn("Nama Kelas");
+
+    try {
+
+        String sql = "SELECT * FROM kelas";
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while(rs.next()) {
+
+            model.addRow(new Object[]{
+                rs.getInt("id_kelas"),
+                rs.getString("nama_kelas")
+            });
+
+        }
+
+        tableKelas.setModel(model);
+
+    } catch(Exception e) {
+        JOptionPane.showMessageDialog(this, e.getMessage());
+    }
+    }//GEN-LAST:event_buttonSimpanActionPerformed
+
+    private void buttonUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUbahActionPerformed
+        if(fieldIdKelas.getText().trim().isEmpty() ||
+        fieldNamaKelas.getText().trim().isEmpty()) {
+
+        JOptionPane.showMessageDialog(this,
+            "ID Kelas dan Nama Kelas harus diisi!");
+        return;
+    }
+
+    String sql = "UPDATE kelas SET nama_kelas=? WHERE id_kelas=?";
+
+    try {
+
+        PreparedStatement pst = conn.prepareStatement(sql);
+
+        pst.setString(1, fieldNamaKelas.getText());
+        pst.setInt(2, Integer.parseInt(fieldIdKelas.getText()));
+
+        pst.executeUpdate();
+
+        JOptionPane.showMessageDialog(this,
+            "Data berhasil diubah");
+
+        tampilData();
+        bersih();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, e.getMessage());
+    }
+
+    }//GEN-LAST:event_buttonUbahActionPerformed
+
+    private void buttonHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusActionPerformed
+    if(fieldIdKelas.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this,
+            "Pilih data yang akan dihapus!");
+        return;
+    }
+
+    int konfirmasi = JOptionPane.showConfirmDialog(
+            this,
+            "Yakin ingin menghapus data ini?",
+            "Konfirmasi Hapus",
+            JOptionPane.YES_NO_OPTION);
+
+    if(konfirmasi == JOptionPane.YES_OPTION) {
+
+        String sql = "DELETE FROM kelas WHERE id_kelas=?";
+
+        try {
+
+            PreparedStatement pst = conn.prepareStatement(sql);
+
+            pst.setInt(1,
+                Integer.parseInt(fieldIdKelas.getText()));
+
+            pst.executeUpdate();
+
+            JOptionPane.showMessageDialog(this,
+                "Data berhasil dihapus");
+
+            tampilData();
+            bersih();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                e.getMessage());
+        }
+    }
+
+    }//GEN-LAST:event_buttonHapusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,7 +292,6 @@ public class KelasForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonBersih;
     private javax.swing.JButton buttonHapus;
     private javax.swing.JButton buttonSimpan;
     private javax.swing.JButton buttonUbah;
