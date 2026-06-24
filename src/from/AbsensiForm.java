@@ -50,9 +50,9 @@ public class AbsensiForm extends javax.swing.JFrame {
         tableAbsen = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelCatatAbsen.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -127,7 +127,8 @@ public class AbsensiForm extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Absensi.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 800, 590));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 800, 590));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 150, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -237,6 +238,7 @@ public class AbsensiForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbNamaSiswa;
     private javax.swing.JComboBox<String> cmbStatus;
     private javax.swing.JComboBox<String> jComboBox1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCatatAbsen;
