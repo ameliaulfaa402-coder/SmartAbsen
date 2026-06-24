@@ -48,34 +48,55 @@ public class AbsensiForm extends javax.swing.JFrame {
         buttonHapus = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAbsen = new javax.swing.JTable();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 600));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelCatatAbsen.setText("Pencatatan Absen:");
+        labelCatatAbsen.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        labelCatatAbsen.setForeground(new java.awt.Color(255, 255, 255));
+        labelCatatAbsen.setText("PENCATATAN ABSENKU");
+        getContentPane().add(labelCatatAbsen, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, -1, -1));
 
+        labelNamaSiswa.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        labelNamaSiswa.setForeground(new java.awt.Color(255, 255, 255));
         labelNamaSiswa.setText("Nama Siswa");
+        getContentPane().add(labelNamaSiswa, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, -1, -1));
 
         cmbNamaSiswa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "Ahmad Fauzi", "Siti Aisyah", "Muhammad Rizky", "Nabila Putri", "Andi Saputra", "Dewi Lestari", "Fajar Ramadhan", "Nurul Hidayah", "Budi Santoso", "Rina Oktaviani", "Yoga Pratama", "Aulia Rahma", "Iqbal Maulana", "Putri Amelia", "Reza Akbar", "Annisa Zahra", "Dimas Nugraha", "Citra Maharani", "Arif Setiawan", "Nadya Safitri", "Rfi Hidayat", "Laila Fitriani", "Galang Prakoso", "Maya Prakoso", "Maya Salsabila", "Alvin Saputra", " ", " " }));
+        getContentPane().add(cmbNamaSiswa, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 151, -1));
 
+        labelTanggal.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        labelTanggal.setForeground(new java.awt.Color(255, 255, 255));
         labelTanggal.setText("Tanggal");
+        getContentPane().add(labelTanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
 
+        labelStatus.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        labelStatus.setForeground(new java.awt.Color(255, 255, 255));
         labelStatus.setText("Status");
+        getContentPane().add(labelStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, -1, -1));
 
         cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hadir", "Sakit", "Izin ", "Alfa" }));
+        getContentPane().add(cmbStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 151, -1));
 
+        labelKeterangan.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        labelKeterangan.setForeground(new java.awt.Color(255, 255, 255));
         labelKeterangan.setText("Kelas");
+        getContentPane().add(labelKeterangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, 20));
 
         buttonSimpan.setText("Simpan");
         buttonSimpan.addActionListener(this::buttonSimpanActionPerformed);
+        getContentPane().add(buttonSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 90, 30));
 
         buttonUbah.setText("Ubah");
         buttonUbah.addActionListener(this::buttonUbahActionPerformed);
+        getContentPane().add(buttonUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 90, 30));
 
         buttonHapus.setText("Hapus");
         buttonHapus.addActionListener(this::buttonHapusActionPerformed);
+        getContentPane().add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 90, 30));
 
         tableAbsen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,76 +119,15 @@ public class AbsensiForm extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableAbsen);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "X IPA 1", "X IPA 2", "XI IPA 1", "XI IPA 2", "XII IPA 1", "XII IPA 2", " " }));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 300, 240));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonHapus)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(labelKeterangan)
-                                            .addComponent(labelStatus)
-                                            .addComponent(labelTanggal)
-                                            .addComponent(labelNamaSiswa)
-                                            .addComponent(labelCatatAbsen))
-                                        .addGap(93, 93, 93))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(cmbNamaSiswa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(cmbStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(40, 40, 40)))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(buttonSimpan)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonUbah)))
-                        .addGap(20, 20, 20))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelCatatAbsen)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelNamaSiswa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbNamaSiswa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelTanggal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelStatus)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelKeterangan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonSimpan)
-                    .addComponent(buttonUbah))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonHapus)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "X IPA 1", "X IPA 2", "XI IPA 1", "XI IPA 2", "XII IPA 1", "XII IPA 2", " " }));
+        jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 151, 20));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Absensi.jpeg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 800, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -210,8 +170,6 @@ public class AbsensiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonHapusActionPerformed
 
     private void buttonUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUbahActionPerformed
-
-
     int baris = tableAbsen.getSelectedRow();
 
     if (baris != -1) {
@@ -230,8 +188,22 @@ public class AbsensiForm extends javax.swing.JFrame {
     } else {
         JOptionPane.showMessageDialog(this, "Pilih data yang akan diubah");
     }
+}   
+    private void bersih() {
+    cmbNamaSiswa.setSelectedIndex(0);
+    cmbStatus.setSelectedIndex(0);
+    jComboBox1.setSelectedIndex(0);
+    jDateChooser1.setDate(null);
+}
+
+    private void tampilData() {
+
 
     }//GEN-LAST:event_buttonUbahActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,7 +237,7 @@ public class AbsensiForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbNamaSiswa;
     private javax.swing.JComboBox<String> cmbStatus;
     private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCatatAbsen;
     private javax.swing.JLabel labelKeterangan;

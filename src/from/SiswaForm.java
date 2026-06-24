@@ -52,30 +52,50 @@ public class SiswaForm extends javax.swing.JFrame {
         buttonHapus = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableSiswa = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 600));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelDataSiswa.setText("Input Data Siswa:");
+        labelDataSiswa.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        labelDataSiswa.setForeground(new java.awt.Color(255, 255, 255));
+        labelDataSiswa.setText("INPUT DATA SISWA");
+        getContentPane().add(labelDataSiswa, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, -1, -1));
 
+        labelNISN.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        labelNISN.setForeground(new java.awt.Color(255, 255, 255));
         labelNISN.setText("NISN/ID Siswa");
+        getContentPane().add(labelNISN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
+        getContentPane().add(fieldNISN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 150, -1));
 
+        labelNama.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        labelNama.setForeground(new java.awt.Color(255, 255, 255));
         labelNama.setText("Nama Lengkap");
+        getContentPane().add(labelNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+        getContentPane().add(fieldNamaLengkap, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 150, -1));
 
+        labelKelas.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        labelKelas.setForeground(new java.awt.Color(255, 255, 255));
         labelKelas.setText("Kelas");
+        getContentPane().add(labelKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         cmbKelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "X IPA 1", "X IPA 2", "XI IPA 1", "XI IPA 2", "XII IPA 1", "XII IPA 2" }));
+        getContentPane().add(cmbKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 150, -1));
 
         buttonSimpan.setText("Simpan");
         buttonSimpan.addActionListener(this::buttonSimpanActionPerformed);
+        getContentPane().add(buttonSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
 
         buttonUbah.setText("Ubah");
         buttonUbah.addActionListener(this::buttonUbahActionPerformed);
+        getContentPane().add(buttonUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
 
         buttonHapus.setText("Hapus");
         buttonHapus.addActionListener(this::buttonHapusActionPerformed);
+        getContentPane().add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
 
         tableSiswa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,62 +110,12 @@ public class SiswaForm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableSiswa);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonHapus)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(buttonSimpan)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonUbah)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelDataSiswa)
-                            .addComponent(labelNama)
-                            .addComponent(labelKelas)
-                            .addComponent(labelNISN)
-                            .addComponent(fieldNISN)
-                            .addComponent(fieldNamaLengkap)
-                            .addComponent(cmbKelas, javax.swing.GroupLayout.Alignment.TRAILING, 0, 150, Short.MAX_VALUE))
-                        .addGap(48, 48, 48)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelDataSiswa)
-                        .addGap(34, 34, 34)
-                        .addComponent(labelNISN)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldNISN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelNama)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldNamaLengkap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelKelas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonSimpan)
-                    .addComponent(buttonUbah))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonHapus)
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 370, 220));
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Siswa.jpeg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -231,6 +201,7 @@ public class SiswaForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbKelas;
     private javax.swing.JTextField fieldNISN;
     private javax.swing.JTextField fieldNamaLengkap;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelDataSiswa;

@@ -3,12 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package from;
+import model.KelolaData;
+import java.sql.Connection;
+import koneksi.koneksi;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author LENOVO SLIM 3
  */
-public class KelasForm extends javax.swing.JFrame {
+public class KelasForm extends javax.swing.JFrame implements KelolaData {
+    
+    Connection conn;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(KelasForm.class.getName());
 
@@ -17,6 +27,11 @@ public class KelasForm extends javax.swing.JFrame {
      */
     public KelasForm() {
         initComponents();
+        
+        setTitle("Sistem Informasi Kelas");
+        setLocationRelativeTo(null);
+        
+        conn = koneksi.getKoneksi();
     }
 
     /**
@@ -29,37 +44,33 @@ public class KelasForm extends javax.swing.JFrame {
     private void initComponents() {
 
         labelInputData = new javax.swing.JLabel();
-        labelIdKelas = new javax.swing.JLabel();
         fieldIdKelas = new javax.swing.JTextField();
+        buttonSimpan = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableKelas = new javax.swing.JTable();
+        labelIdKelas = new javax.swing.JLabel();
         labelNamaKelas = new javax.swing.JLabel();
         fieldNamaKelas = new javax.swing.JTextField();
         labelAksi = new javax.swing.JLabel();
-        buttonSimpan = new javax.swing.JButton();
-        buttonBersih = new javax.swing.JButton();
         buttonUbah = new javax.swing.JButton();
         buttonHapus = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableKelas = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 600));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelInputData.setText("Input Data:");
-
-        labelIdKelas.setText("ID Kelas");
-
-        labelNamaKelas.setText("Nama Kelas");
-
-        labelAksi.setText("Aksi:");
+        labelInputData.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        labelInputData.setForeground(new java.awt.Color(255, 255, 255));
+        labelInputData.setText("INPUT DATA");
+        getContentPane().add(labelInputData, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 290, 30));
+        getContentPane().add(fieldIdKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 150, -1));
 
         buttonSimpan.setText("Simpan");
+        buttonSimpan.addActionListener(this::buttonSimpanActionPerformed);
+        getContentPane().add(buttonSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
 
-        buttonBersih.setText("Bersih");
-
-        buttonUbah.setText("Ubah");
-
-        buttonHapus.setText("Hapus");
-
+        tableKelas.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         tableKelas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -73,62 +84,163 @@ public class KelasForm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableKelas);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelAksi)
-                    .addComponent(labelNamaKelas)
-                    .addComponent(labelIdKelas)
-                    .addComponent(labelInputData)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonBersih)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonHapus))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonSimpan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonUbah))
-                    .addComponent(fieldNamaKelas)
-                    .addComponent(fieldIdKelas))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelInputData)
-                        .addGap(23, 23, 23)
-                        .addComponent(labelIdKelas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldIdKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelNamaKelas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldNamaKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelAksi)
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buttonSimpan)
-                            .addComponent(buttonUbah))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buttonBersih)
-                            .addComponent(buttonHapus)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 340, 210));
+
+        labelIdKelas.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        labelIdKelas.setForeground(new java.awt.Color(255, 255, 255));
+        labelIdKelas.setText("ID Kelas");
+        getContentPane().add(labelIdKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 60, -1));
+
+        labelNamaKelas.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        labelNamaKelas.setForeground(new java.awt.Color(255, 255, 255));
+        labelNamaKelas.setText("Nama Kelas");
+        getContentPane().add(labelNamaKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+        getContentPane().add(fieldNamaKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 150, -1));
+
+        labelAksi.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        labelAksi.setForeground(new java.awt.Color(255, 255, 255));
+        labelAksi.setText("Aksi:");
+        getContentPane().add(labelAksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 50, -1));
+
+        buttonUbah.setText("Ubah");
+        buttonUbah.addActionListener(this::buttonUbahActionPerformed);
+        getContentPane().add(buttonUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+
+        buttonHapus.setText("Hapus");
+        buttonHapus.addActionListener(this::buttonHapusActionPerformed);
+        getContentPane().add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Kelas.jpeg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -40, 690, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSimpanActionPerformed
+    String sql = "INSERT INTO kelas(id_kelas,nama_kelas) VALUES (?,?)";
+
+    try {
+        PreparedStatement pst = conn.prepareStatement(sql);
+
+        pst.setString(1, fieldIdKelas.getText());
+        pst.setString(2, fieldNamaKelas.getText());
+
+        pst.executeUpdate();
+
+        JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+
+        tampilData();
+        bersih();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, e.getMessage());
+    }
+}  
+    private void bersih() {
+    fieldIdKelas.setText("");
+    fieldNamaKelas.setText("");
+    }
+    
+    private void tampilData() {
+        DefaultTableModel model = new DefaultTableModel();
+
+    model.addColumn("ID Kelas");
+    model.addColumn("Nama Kelas");
+
+    try {
+
+        String sql = "SELECT * FROM kelas";
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while(rs.next()) {
+
+            model.addRow(new Object[]{
+                rs.getInt("id_kelas"),
+                rs.getString("nama_kelas")
+            });
+
+        }
+
+        tableKelas.setModel(model);
+
+    } catch(Exception e) {
+        JOptionPane.showMessageDialog(this, e.getMessage());
+    }
+    }//GEN-LAST:event_buttonSimpanActionPerformed
+
+    private void buttonUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUbahActionPerformed
+        if(fieldIdKelas.getText().trim().isEmpty() ||
+        fieldNamaKelas.getText().trim().isEmpty()) {
+
+        JOptionPane.showMessageDialog(this,
+            "ID Kelas dan Nama Kelas harus diisi!");
+        return;
+    }
+
+    String sql = "UPDATE kelas SET nama_kelas=? WHERE id_kelas=?";
+
+    try {
+
+        PreparedStatement pst = conn.prepareStatement(sql);
+
+        pst.setString(1, fieldNamaKelas.getText());
+        pst.setInt(2, Integer.parseInt(fieldIdKelas.getText()));
+
+        pst.executeUpdate();
+
+        JOptionPane.showMessageDialog(this,
+            "Data berhasil diubah");
+
+        tampilData();
+        bersih();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, e.getMessage());
+    }
+
+    }//GEN-LAST:event_buttonUbahActionPerformed
+
+    private void buttonHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusActionPerformed
+    if(fieldIdKelas.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this,
+            "Pilih data yang akan dihapus!");
+        return;
+    }
+
+    int konfirmasi = JOptionPane.showConfirmDialog(
+            this,
+            "Yakin ingin menghapus data ini?",
+            "Konfirmasi Hapus",
+            JOptionPane.YES_NO_OPTION);
+
+    if(konfirmasi == JOptionPane.YES_OPTION) {
+
+        String sql = "DELETE FROM kelas WHERE id_kelas=?";
+
+        try {
+
+            PreparedStatement pst = conn.prepareStatement(sql);
+
+            pst.setInt(1,
+                Integer.parseInt(fieldIdKelas.getText()));
+
+            pst.executeUpdate();
+
+            JOptionPane.showMessageDialog(this,
+                "Data berhasil dihapus");
+
+            tampilData();
+            bersih();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                e.getMessage());
+        }
+    }
+
+    }//GEN-LAST:event_buttonHapusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,12 +268,12 @@ public class KelasForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonBersih;
     private javax.swing.JButton buttonHapus;
     private javax.swing.JButton buttonSimpan;
     private javax.swing.JButton buttonUbah;
     private javax.swing.JTextField fieldIdKelas;
     private javax.swing.JTextField fieldNamaKelas;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelAksi;
     private javax.swing.JLabel labelIdKelas;
@@ -169,4 +281,19 @@ public class KelasForm extends javax.swing.JFrame {
     private javax.swing.JLabel labelNamaKelas;
     private javax.swing.JTable tableKelas;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void simpan() {
+        buttonSimpanActionPerformed(null); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void ubah() {
+        buttonUbahActionPerformed(null); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void hapus() {
+        buttonHapusActionPerformed(null); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

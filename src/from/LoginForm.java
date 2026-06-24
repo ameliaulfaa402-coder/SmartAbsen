@@ -37,7 +37,6 @@ public class LoginForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
         textPresensi = new javax.swing.JLabel();
         fieldUsername = new javax.swing.JTextField();
         fieldPassword = new javax.swing.JPasswordField();
@@ -46,6 +45,7 @@ public class LoginForm extends javax.swing.JFrame {
         buttonLogin = new javax.swing.JButton();
         labelLupaPassword = new javax.swing.JLabel();
         buttonLogout = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -59,117 +59,69 @@ public class LoginForm extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(450, 550));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        textPresensi.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
+        textPresensi.setForeground(new java.awt.Color(255, 255, 255));
+        textPresensi.setText("   PRESENSI SISWA");
+        getContentPane().add(textPresensi, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 490, 190));
+        getContentPane().add(fieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, 230, 30));
+        getContentPane().add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 230, 30));
 
-        textPresensi.setText("SISTEM PRESENSI SISWA");
-
+        labelUsername.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        labelUsername.setForeground(new java.awt.Color(255, 255, 255));
         labelUsername.setText("Username");
+        getContentPane().add(labelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 230, -1));
 
+        labelPassword.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        labelPassword.setForeground(new java.awt.Color(255, 255, 255));
         labelPassword.setText("Password");
+        getContentPane().add(labelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 150, 30));
 
+        buttonLogin.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         buttonLogin.setText("MASUK");
         buttonLogin.addActionListener(this::buttonLoginActionPerformed);
+        getContentPane().add(buttonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, 100, -1));
 
+        labelLupaPassword.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        labelLupaPassword.setForeground(new java.awt.Color(255, 255, 255));
         labelLupaPassword.setText("Lupa Kata Sandi?");
+        getContentPane().add(labelLupaPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 350, 130, 20));
 
+        buttonLogout.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         buttonLogout.setText("KELUAR");
         buttonLogout.addActionListener(this::buttonLogoutActionPerformed);
+        getContentPane().add(buttonLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 420, 100, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(textPresensi)
-                        .addGap(98, 98, 98))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelLupaPassword)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelUsername))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(fieldUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                                    .addComponent(fieldPassword))))
-                        .addGap(75, 75, 75))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonLogout, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(textPresensi)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelUsername))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelPassword)
-                    .addComponent(fieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelLupaPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonLogin)
-                .addGap(18, 18, 18)
-                .addComponent(buttonLogout)
-                .addContainerGap(58, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(145, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Login.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
-    String user = fieldUsername.getText();
-    String pass = fieldPassword.getText();
-
-    if(user.equals("TU") && pass.equals("TU26")){
-
-        DashboardForm dashboard = new DashboardForm();
-        dashboard.setVisible(true);
-        this.dispose();
-
-    }else{
-        JOptionPane.showMessageDialog(this,
-                "Username atau Password salah!");
-    }
-    
-    }//GEN-LAST:event_buttonLoginActionPerformed
 
     private void buttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogoutActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonLogoutActionPerformed
 
+    private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
+        String user = fieldUsername.getText();
+        String pass = fieldPassword.getText();
+
+        if(user.equals("TU") && pass.equals("TU26")){
+
+            DashboardForm dashboard = new DashboardForm();
+            dashboard.setVisible(true);
+            this.dispose();
+
+        }else{
+            JOptionPane.showMessageDialog(this,
+                "Username atau Password salah!");
+        }
+
+    }//GEN-LAST:event_buttonLoginActionPerformed
+ 
     /**
      * @param args the command line arguments
      */
@@ -200,7 +152,7 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JButton buttonLogout;
     private javax.swing.JPasswordField fieldPassword;
     private javax.swing.JTextField fieldUsername;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel labelLupaPassword;
     private javax.swing.JLabel labelPassword;

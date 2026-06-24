@@ -32,93 +32,59 @@ public class DashboardForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         labelSelamatDatang = new javax.swing.JLabel();
         labelPilihMenu = new javax.swing.JLabel();
         buttonDataKelas = new javax.swing.JButton();
         buttonDataAbsensi = new javax.swing.JButton();
         buttonDataSiswa = new javax.swing.JButton();
         buttonLogout = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 204, 255));
         setPreferredSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        labelSelamatDatang.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        labelSelamatDatang.setForeground(new java.awt.Color(255, 255, 255));
+        labelSelamatDatang.setText("SELAMAT DATANG DI PRESENSI ABSENKU");
+        getContentPane().add(labelSelamatDatang, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, 60));
 
-        labelSelamatDatang.setText("Selamat Datang di Sistem Presensi AbsenKu");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addComponent(labelSelamatDatang)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addComponent(labelSelamatDatang)
-                .addGap(20, 20, 20))
-        );
-
+        labelPilihMenu.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        labelPilihMenu.setForeground(new java.awt.Color(255, 255, 255));
         labelPilihMenu.setText("PILIH MENU MANAJEMEN:");
+        getContentPane().add(labelPilihMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 230, 50));
 
-        buttonDataKelas.setBackground(new java.awt.Color(0, 102, 255));
+        buttonDataKelas.setBackground(new java.awt.Color(204, 51, 255));
+        buttonDataKelas.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         buttonDataKelas.setText("DATA KELAS");
         buttonDataKelas.addActionListener(this::buttonDataKelasActionPerformed);
+        getContentPane().add(buttonDataKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 150, 50));
 
-        buttonDataAbsensi.setBackground(new java.awt.Color(0, 102, 255));
+        buttonDataAbsensi.setBackground(new java.awt.Color(255, 51, 51));
+        buttonDataAbsensi.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         buttonDataAbsensi.setText("DATA ABSENSI");
         buttonDataAbsensi.addActionListener(this::buttonDataAbsensiActionPerformed);
+        getContentPane().add(buttonDataAbsensi, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 500, 170, 50));
 
-        buttonDataSiswa.setBackground(new java.awt.Color(0, 102, 255));
+        buttonDataSiswa.setBackground(new java.awt.Color(255, 102, 153));
+        buttonDataSiswa.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         buttonDataSiswa.setText("DATA SISWA");
         buttonDataSiswa.addActionListener(this::buttonDataSiswaActionPerformed);
+        getContentPane().add(buttonDataSiswa, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 300, 170, 50));
 
-        buttonLogout.setBackground(new java.awt.Color(255, 0, 0));
+        buttonLogout.setBackground(new java.awt.Color(102, 102, 255));
+        buttonLogout.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         buttonLogout.setText("Logout");
         buttonLogout.addActionListener(this::buttonLogoutActionPerformed);
+        getContentPane().add(buttonLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 500, 120, 50));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(117, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonDataKelas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonDataAbsensi, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonDataSiswa, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(158, 158, 158))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(173, 173, 173)
-                .addComponent(labelPilihMenu)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(labelPilihMenu)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonDataKelas, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonDataSiswa, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonDataAbsensi, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dashboard.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jLabel1.setMaximumSize(new java.awt.Dimension(1083, 730));
+        jLabel1.setMinimumSize(new java.awt.Dimension(1083, 730));
+        jLabel1.setPreferredSize(new java.awt.Dimension(1083, 730));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 770));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -185,7 +151,7 @@ public class DashboardForm extends javax.swing.JFrame {
     private javax.swing.JButton buttonDataKelas;
     private javax.swing.JButton buttonDataSiswa;
     private javax.swing.JButton buttonLogout;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelPilihMenu;
     private javax.swing.JLabel labelSelamatDatang;
     // End of variables declaration//GEN-END:variables
