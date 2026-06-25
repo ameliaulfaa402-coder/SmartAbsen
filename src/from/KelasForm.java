@@ -54,10 +54,10 @@ public class KelasForm extends javax.swing.JFrame implements KelolaData {
         labelAksi = new javax.swing.JLabel();
         buttonUbah = new javax.swing.JButton();
         buttonHapus = new javax.swing.JButton();
+        buttonKembali = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelInputData.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -104,11 +104,15 @@ public class KelasForm extends javax.swing.JFrame implements KelolaData {
 
         buttonUbah.setText("Ubah");
         buttonUbah.addActionListener(this::buttonUbahActionPerformed);
-        getContentPane().add(buttonUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+        getContentPane().add(buttonUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 70, -1));
 
         buttonHapus.setText("Hapus");
         buttonHapus.addActionListener(this::buttonHapusActionPerformed);
-        getContentPane().add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, -1, -1));
+        getContentPane().add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 70, -1));
+
+        buttonKembali.setText("Kembali");
+        buttonKembali.addActionListener(this::buttonKembaliActionPerformed);
+        getContentPane().add(buttonKembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Kelas.jpeg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -242,6 +246,13 @@ public class KelasForm extends javax.swing.JFrame implements KelolaData {
 
     }//GEN-LAST:event_buttonHapusActionPerformed
 
+    private void buttonKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonKembaliActionPerformed
+        // TODO add your handling code here:
+        from.DashboardForm dashboard = new from.DashboardForm();
+        dashboard.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_buttonKembaliActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -269,6 +280,7 @@ public class KelasForm extends javax.swing.JFrame implements KelolaData {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonHapus;
+    private javax.swing.JButton buttonKembali;
     private javax.swing.JButton buttonSimpan;
     private javax.swing.JButton buttonUbah;
     private javax.swing.JTextField fieldIdKelas;

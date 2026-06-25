@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import koneksi.koneksi;
 
 /**
  *
@@ -65,8 +66,8 @@ public class LoginForm extends javax.swing.JFrame {
         textPresensi.setForeground(new java.awt.Color(255, 255, 255));
         textPresensi.setText("   PRESENSI SISWA");
         getContentPane().add(textPresensi, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 490, 190));
-        getContentPane().add(fieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, 230, 30));
-        getContentPane().add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 230, 30));
+        getContentPane().add(fieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 230, 30));
+        getContentPane().add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, 230, 30));
 
         labelUsername.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         labelUsername.setForeground(new java.awt.Color(255, 255, 255));
@@ -86,6 +87,11 @@ public class LoginForm extends javax.swing.JFrame {
         labelLupaPassword.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         labelLupaPassword.setForeground(new java.awt.Color(255, 255, 255));
         labelLupaPassword.setText("Lupa Kata Sandi?");
+        labelLupaPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelLupaPasswordMouseClicked(evt);
+            }
+        });
         getContentPane().add(labelLupaPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 350, 130, 20));
 
         buttonLogout.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -107,20 +113,59 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
         String user = fieldUsername.getText();
-        String pass = fieldPassword.getText();
+String pass = fieldPassword.getText();
 
-        if(user.equals("TU") && pass.equals("TU26")){
+try {
+    Connection conn = koneksi.getKoneksi();
 
-            DashboardForm dashboard = new DashboardForm();
-            dashboard.setVisible(true);
-            this.dispose();
+    String sql = "SELECT * FROM users WHERE username=? AND password=?";
+    PreparedStatement ps = conn.prepareStatement(sql);
 
-        }else{
-            JOptionPane.showMessageDialog(this,
+    ps.setString(1, user);
+    ps.setString(2, pass);
+
+    ResultSet rs = ps.executeQuery();
+
+    if(rs.next()){
+        DashboardForm dashboard = new DashboardForm();
+        dashboard.setVisible(true);
+        this.dispose();
+    }else{
+        JOptionPane.showMessageDialog(this,
                 "Username atau Password salah!");
-        }
+    }
 
+} catch(Exception e){
+    JOptionPane.showMessageDialog(this, e.getMessage());
+}
     }//GEN-LAST:event_buttonLoginActionPerformed
+
+    private void labelLupaPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelLupaPasswordMouseClicked
+        // TODO add your handling code here:
+        String username = javax.swing.JOptionPane.showInputDialog(this, "Masukkan Username Anda:");
+
+if (username != null && !username.trim().isEmpty()) {
+    String passwordBaru = javax.swing.JOptionPane.showInputDialog(this, "Masukkan Password Baru:");
+    
+    if (passwordBaru != null && !passwordBaru.trim().isEmpty()) {
+        try {
+            java.sql.Connection conn = koneksi.getKoneksi();
+            String sql = "UPDATE users SET password=? WHERE username=?";
+            java.sql.PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, passwordBaru);
+            ps.setString(2, username);
+
+            if (ps.executeUpdate() > 0) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Password berhasil diubah.");
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Username tidak ditemukan.");
+            }
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+       }
+     }
+    }//GEN-LAST:event_labelLupaPasswordMouseClicked
  
     /**
      * @param args the command line arguments

@@ -50,6 +50,7 @@ public class SiswaForm extends javax.swing.JFrame {
         buttonSimpan = new javax.swing.JButton();
         buttonUbah = new javax.swing.JButton();
         buttonHapus = new javax.swing.JButton();
+        buttonKembali = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableSiswa = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -57,7 +58,6 @@ public class SiswaForm extends javax.swing.JFrame {
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelDataSiswa.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -91,11 +91,15 @@ public class SiswaForm extends javax.swing.JFrame {
 
         buttonUbah.setText("Ubah");
         buttonUbah.addActionListener(this::buttonUbahActionPerformed);
-        getContentPane().add(buttonUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
+        getContentPane().add(buttonUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 70, -1));
 
         buttonHapus.setText("Hapus");
         buttonHapus.addActionListener(this::buttonHapusActionPerformed);
-        getContentPane().add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
+        getContentPane().add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 70, -1));
+
+        buttonKembali.setText("Kembali");
+        buttonKembali.addActionListener(this::buttonKembaliActionPerformed);
+        getContentPane().add(buttonKembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, -1, -1));
 
         tableSiswa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -169,6 +173,13 @@ public class SiswaForm extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_buttonHapusActionPerformed
 
+    private void buttonKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonKembaliActionPerformed
+        // TODO add your handling code here:
+        from.DashboardForm dashboard = new from.DashboardForm();
+        dashboard.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_buttonKembaliActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -196,6 +207,7 @@ public class SiswaForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonHapus;
+    private javax.swing.JButton buttonKembali;
     private javax.swing.JButton buttonSimpan;
     private javax.swing.JButton buttonUbah;
     private javax.swing.JComboBox<String> cmbKelas;

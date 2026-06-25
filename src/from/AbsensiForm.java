@@ -46,6 +46,7 @@ public class AbsensiForm extends javax.swing.JFrame {
         buttonSimpan = new javax.swing.JButton();
         buttonUbah = new javax.swing.JButton();
         buttonHapus = new javax.swing.JButton();
+        buttonKembali = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAbsen = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -97,6 +98,10 @@ public class AbsensiForm extends javax.swing.JFrame {
         buttonHapus.setText("Hapus");
         buttonHapus.addActionListener(this::buttonHapusActionPerformed);
         getContentPane().add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 90, 30));
+
+        buttonKembali.setText("Kembali");
+        buttonKembali.addActionListener(this::buttonKembaliActionPerformed);
+        getContentPane().add(buttonKembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 90, 30));
 
         tableAbsen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -206,6 +211,13 @@ public class AbsensiForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void buttonKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonKembaliActionPerformed
+        // TODO add your handling code here:
+        from.DashboardForm dashboard = new from.DashboardForm();
+        dashboard.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_buttonKembaliActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -233,6 +245,7 @@ public class AbsensiForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonHapus;
+    private javax.swing.JButton buttonKembali;
     private javax.swing.JButton buttonSimpan;
     private javax.swing.JButton buttonUbah;
     private javax.swing.JComboBox<String> cmbNamaSiswa;
