@@ -16,9 +16,9 @@ Herika Hayurani
 Berkas terdiri dari:
 ### 1. 🗄️ File database sql dengan nama database: `smartabsen`
 ### 2. 💻 Source code project: Dibuat menggunakan NetBeans.
-   **Nama Project** : SmartAbsen
+   **Nama Project:** SmartAbsen
    
-   **Project berisi** :
+   **Project berisi:**
    * 🔐 Form Login
    * 📊 Form Dashboard
    * 🏫 Form Data Kelas
