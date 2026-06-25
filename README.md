@@ -6,7 +6,7 @@ Mata kuliah: Pemrograman Berorientasi Objek
 Herika Hayurani
 
 ## 👥 Anggota Kelompok & Pembagian Peran
-**Wafik khoerunisah** Kelas A, 1402025063, **Frontend Developer (Aesthetic & Layout)** Bertanggung jawab penuh atas kustomisasi estetika grafis visual serta merancang dan mengintegrasikan desain gambar latar belakang di setiap form aplikasi. |
+**Wafik khoerunisah** Kelas A, 1402025063, **Frontend Developer (Aesthetic & Layout)** Bertanggung jawab penuh atas kustomisasi estetika grafis visual serta merancang dan mengintegrasikan desain gambar latar belakang di setiap form aplikasi.
 
 **Tria Eka Ermanto** Kelas A, 1402025061, **UI Designer & Interaction (Event Handler)** Merancang tata letak dan menyusun komponen GUI awal di Window Builder NetBeans serta mengimplementasikan fungsionalitas interaktif (Event ActionListener) pada komponen tombol aksi.
 
