@@ -14,16 +14,17 @@ Herika Hayurani
 
 ## 🗂️ Berkas ini menjelaskan kelengkapan berkas proyek akhir kami yang berjudul: SmartAbsen.
 Berkas terdiri dari:
-1. File database sql dengan nama database: `smartabsen`
-2. Source code project: Dibuat menggunakan NetBeans.
-   Nama Project : SmartAbsen
-   Project berisi:
+### 1. 🗄️ File database sql dengan nama database: `smartabsen`
+### 2. 💻 Source code project: Dibuat menggunakan NetBeans.
+   **Nama Project** : SmartAbsen
+   **Project berisi** :
    * 🔐 Form Login
    * 📊 Form Dashboard
    * 🏫 Form Data Kelas
    * 👥 Form Data Siswa
    * 📝 Form Absensi
    * 🔌 Koneksi Database MySQL
+     
      Source code tersimpan dalam folder SmartAbsen yang dapat dibuka menggunakan NetBeans
 
 ## 🔗 Tautan Repositori
