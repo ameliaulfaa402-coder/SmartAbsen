@@ -24,7 +24,7 @@ Berkas terdiri dari:
    * 👥 Form Data Siswa
    * 📝 Form Absensi
    * 🔌 Koneksi Database MySQL
-  Source code tersimpan dalam folder SmartAbsen yang dapat dibuka menggunakan NetBeans
+     Source code tersimpan dalam folder SmartAbsen yang dapat dibuka menggunakan NetBeans
 
 ## 🔗 Tautan Repositori
 **GitHub Repository:** (https://github.com/ameliaulfaa402-coder/SmartAbsen.git)
