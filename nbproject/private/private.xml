@@ -3,13 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Nisakusayang/SmartAbsen/src/from/AbsensiForm.java</file>
-            <file>file:/C:/Users/Nisakusayang/SmartAbsen/src/from/LoginForm.java</file>
-            <file>file:/C:/Users/Nisakusayang/SmartAbsen/src/from/DashboardForm.java</file>
-            <file>file:/C:/Users/Nisakusayang/SmartAbsen/src/from/KelasForm.java</file>
-            <file>file:/C:/Users/Nisakusayang/SmartAbsen/src/from/SiswaForm.java</file>
-            <file>file:/C:/Users/Nisakusayang/SmartAbsen/src/images/Absensi.jpeg</file>
-            <file>file:/C:/Users/Nisakusayang/SmartAbsen/src/images/Dashboard.png</file>
+            <file>file:/C:/Users/LENOVO%20SLIM%203/SmartAbsen/src/from/KelasForm.java</file>
+            <file>file:/C:/Users/LENOVO%20SLIM%203/SmartAbsen/src/from/AbsensiForm.java</file>
+            <file>file:/C:/Users/LENOVO%20SLIM%203/SmartAbsen/src/from/DashboardForm.java</file>
+            <file>file:/C:/Users/LENOVO%20SLIM%203/SmartAbsen/src/from/LoginForm.java</file>
+            <file>file:/C:/Users/LENOVO%20SLIM%203/SmartAbsen/src/from/SiswaForm.java</file>
+            <file>file:/C:/Users/LENOVO%20SLIM%203/SmartAbsen/src/model/DataKelas.java</file>
+            <file>file:/C:/Users/LENOVO%20SLIM%203/SmartAbsen/src/model/KelolaData.java</file>
+            <file>file:/C:/Users/LENOVO%20SLIM%203/SmartAbsen/src/model/Pengguna.java</file>
+            <file>file:/C:/Users/LENOVO%20SLIM%203/SmartAbsen/src/model/Siswa.java</file>
+            <file>file:/C:/Users/LENOVO%20SLIM%203/SmartAbsen/src/model/TestCasting.java</file>
+            <file>file:/C:/Users/LENOVO%20SLIM%203/SmartAbsen/src/koneksi/koneksi.java</file>
         </group>
     </open-files>
 </project-private>
