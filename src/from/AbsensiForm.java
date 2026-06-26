@@ -54,6 +54,7 @@ public class AbsensiForm extends javax.swing.JFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 550));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelCatatAbsen.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -79,7 +80,7 @@ public class AbsensiForm extends javax.swing.JFrame {
         labelStatus.setText("Status");
         getContentPane().add(labelStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, -1, -1));
 
-        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hadir", "Sakit", "Izin ", "Alfa" }));
+        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "Hadir", "Sakit", "Izin ", "Alfa" }));
         getContentPane().add(cmbStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 151, -1));
 
         labelKeterangan.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -132,7 +133,8 @@ public class AbsensiForm extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Absensi.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 800, 590));
+        jLabel1.setPreferredSize(new java.awt.Dimension(800, 550));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 800, 590));
         getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 150, -1));
 
         pack();

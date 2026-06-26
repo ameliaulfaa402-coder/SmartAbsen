@@ -58,6 +58,9 @@ public class KelasForm extends javax.swing.JFrame implements KelolaData {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(700, 450));
+        setMinimumSize(new java.awt.Dimension(700, 450));
+        setPreferredSize(new java.awt.Dimension(700, 450));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelInputData.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -116,7 +119,10 @@ public class KelasForm extends javax.swing.JFrame implements KelolaData {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Kelas.jpeg"))); // NOI18N
         jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -40, 690, 510));
+        jLabel2.setMaximumSize(new java.awt.Dimension(1366, 768));
+        jLabel2.setMinimumSize(new java.awt.Dimension(700, 450));
+        jLabel2.setPreferredSize(new java.awt.Dimension(700, 450));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 690, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

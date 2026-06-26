@@ -60,6 +60,8 @@ public class LoginForm extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1042, 630));
+        setPreferredSize(new java.awt.Dimension(1042, 630));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         textPresensi.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
@@ -102,6 +104,7 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Login.png"))); // NOI18N
         jLabel2.setText("jLabel2");
+        jLabel2.setPreferredSize(new java.awt.Dimension(1042, 730));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, 620));
 
         pack();

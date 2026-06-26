@@ -58,6 +58,8 @@ public class SiswaForm extends javax.swing.JFrame {
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(750, 500));
+        setPreferredSize(new java.awt.Dimension(750, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelDataSiswa.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -119,6 +121,7 @@ public class SiswaForm extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Siswa.jpeg"))); // NOI18N
         jLabel2.setText("jLabel2");
+        jLabel2.setPreferredSize(new java.awt.Dimension(750, 500));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 500));
 
         pack();

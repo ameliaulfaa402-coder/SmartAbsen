@@ -42,7 +42,7 @@ public class DashboardForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 204, 255));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1292, 792));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelSelamatDatang.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
@@ -83,7 +83,7 @@ public class DashboardForm extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
         jLabel1.setMaximumSize(new java.awt.Dimension(1083, 730));
         jLabel1.setMinimumSize(new java.awt.Dimension(1083, 730));
-        jLabel1.setPreferredSize(new java.awt.Dimension(1083, 730));
+        jLabel1.setPreferredSize(new java.awt.Dimension(1292, 792));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 770));
 
         pack();
