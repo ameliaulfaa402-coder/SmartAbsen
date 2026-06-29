@@ -8,8 +8,8 @@ package model;
  *
  * @author AMELIA ULFA
  */
-public class Siswa extends Pengguna {
-    public Siswa(String username) {
+public class Admin extends Pengguna {
+    public Admin(String username) {
         super(username);
     }
 

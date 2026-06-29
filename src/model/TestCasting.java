@@ -11,10 +11,10 @@ package model;
 public class TestCasting {
     public static void main(String[] args) {
 
-        Pengguna p = new Siswa("Ahmad Fauzi");
+        Pengguna p = new Admin("Ahmad Fauzi");
 
-        if (p instanceof Siswa) {
-            Siswa s = (Siswa) p;
+        if (p instanceof Admin) {
+            Admin s = (Admin) p;
             s.tampilInfo();
         }
     }
