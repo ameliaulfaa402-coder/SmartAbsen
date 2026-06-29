@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package from;
+import java.sql.Connection;
+import koneksi.koneksi;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SiswaForm extends javax.swing.JFrame {
     
+    Connection conn;
     private DefaultTableModel model;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SiswaForm.class.getName());
@@ -21,13 +26,17 @@ public class SiswaForm extends javax.swing.JFrame {
      * Creates new form SiswaForm
      */
     public SiswaForm() {
-    initComponents();
+        initComponents();
+        
+        setTitle("Data Siswa");
+        setLocationRelativeTo(null);
 
-    setTitle("Data Siswa");
-    setLocationRelativeTo(null);
+        conn = koneksi.getKoneksi();
 
-    model = (DefaultTableModel) tableSiswa.getModel();
-    model.setRowCount(0);
+        model = (DefaultTableModel) tableSiswa.getModel();
+        model.setRowCount(0);
+
+        tampilData();
 }
 
     /**
@@ -59,7 +68,6 @@ public class SiswaForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(750, 500));
-        setPreferredSize(new java.awt.Dimension(750, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelDataSiswa.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -69,39 +77,42 @@ public class SiswaForm extends javax.swing.JFrame {
 
         labelNISN.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         labelNISN.setForeground(new java.awt.Color(255, 255, 255));
-        labelNISN.setText("NISN/ID Siswa");
+        labelNISN.setText("NISN");
         getContentPane().add(labelNISN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
         getContentPane().add(fieldNISN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 150, -1));
 
         labelNama.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         labelNama.setForeground(new java.awt.Color(255, 255, 255));
-        labelNama.setText("Nama Lengkap");
-        getContentPane().add(labelNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
-        getContentPane().add(fieldNamaLengkap, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 150, -1));
+        labelNama.setText("Nama");
+        getContentPane().add(labelNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
+
+        fieldNamaLengkap.addActionListener(this::fieldNamaLengkapActionPerformed);
+        getContentPane().add(fieldNamaLengkap, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 150, -1));
 
         labelKelas.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         labelKelas.setForeground(new java.awt.Color(255, 255, 255));
-        labelKelas.setText("Kelas");
-        getContentPane().add(labelKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
+        labelKelas.setText("id_kelas");
+        getContentPane().add(labelKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
 
-        cmbKelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "X IPA 1", "X IPA 2", "XI IPA 1", "XI IPA 2", "XII IPA 1", "XII IPA 2" }));
-        getContentPane().add(cmbKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 150, -1));
+        cmbKelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "1", "2", "3", "4", "5", "6", " " }));
+        cmbKelas.addActionListener(this::cmbKelasActionPerformed);
+        getContentPane().add(cmbKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 150, -1));
 
         buttonSimpan.setText("Simpan");
         buttonSimpan.addActionListener(this::buttonSimpanActionPerformed);
-        getContentPane().add(buttonSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
+        getContentPane().add(buttonSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
 
         buttonUbah.setText("Ubah");
         buttonUbah.addActionListener(this::buttonUbahActionPerformed);
-        getContentPane().add(buttonUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 70, -1));
+        getContentPane().add(buttonUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 70, -1));
 
         buttonHapus.setText("Hapus");
         buttonHapus.addActionListener(this::buttonHapusActionPerformed);
-        getContentPane().add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 70, -1));
+        getContentPane().add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 70, -1));
 
         buttonKembali.setText("Kembali");
         buttonKembali.addActionListener(this::buttonKembaliActionPerformed);
-        getContentPane().add(buttonKembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, -1, -1));
+        getContentPane().add(buttonKembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
 
         tableSiswa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,9 +122,17 @@ public class SiswaForm extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "NISN", "Nama Siswa", "Kelas"
+                "NISN", "Nama ", "id_kelas"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tableSiswa);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 370, 220));
@@ -129,22 +148,29 @@ public class SiswaForm extends javax.swing.JFrame {
 
     private void buttonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSimpanActionPerformed
 
-    String nisn = fieldNISN.getText();
-    String nama = fieldNamaLengkap.getText();
-    String kelas = cmbKelas.getSelectedItem().toString();
+    try{
 
-    model.addRow(new Object[]{
-        nisn,
-        nama,
-        kelas
-    });
+    String sql="INSERT INTO siswa(nis,nama,id_kelas) VALUES(?,?,?)";
 
-    JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+    PreparedStatement ps=conn.prepareStatement(sql);
 
-    fieldNISN.setText("");
-    fieldNamaLengkap.setText("");
-    cmbKelas.setSelectedIndex(0);
+    ps.setString(1,fieldNISN.getText());
 
+    ps.setString(2,fieldNamaLengkap.getText());
+
+    ps.setInt(3,cmbKelas.getSelectedIndex());
+
+    ps.executeUpdate();
+
+    JOptionPane.showMessageDialog(this,"Data berhasil disimpan");
+
+    tampilData();
+
+    }catch(Exception e){
+
+    JOptionPane.showMessageDialog(this,e.getMessage());
+
+}
     }//GEN-LAST:event_buttonSimpanActionPerformed
 
     private void buttonUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUbahActionPerformed
@@ -183,6 +209,42 @@ public class SiswaForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_buttonKembaliActionPerformed
 
+    
+    private void fieldNamaLengkapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNamaLengkapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldNamaLengkapActionPerformed
+
+    private void cmbKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKelasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbKelasActionPerformed
+    private void tampilData() {
+
+    model.setRowCount(0);
+
+    try {
+
+        String sql = "SELECT * FROM siswa";
+
+        PreparedStatement ps = conn.prepareStatement(sql);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+
+            model.addRow(new Object[]{
+                rs.getString("nis"),
+                rs.getString("nama"),
+                rs.getString("id_kelas")
+            });
+
+        }
+
+    } catch (Exception e) {
+
+        JOptionPane.showMessageDialog(this, e.getMessage());
+
+    }
+    }
     /**
      * @param args the command line arguments
      */

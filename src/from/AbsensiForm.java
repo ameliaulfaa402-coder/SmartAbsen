@@ -3,14 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package from;
-import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;
+import koneksi.koneksi;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.text.SimpleDateFormat;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author LENOVO SLIM 3
  */
 public class AbsensiForm extends javax.swing.JFrame {
+    Connection conn;
     private DefaultTableModel model;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AbsensiForm.class.getName());
 
@@ -20,12 +25,15 @@ public class AbsensiForm extends javax.swing.JFrame {
     public AbsensiForm() {
         initComponents();
         
+        conn = koneksi.getKoneksi();
+        
         setTitle("DATA ABSENSI");
         setLocationRelativeTo(null);
         
         model = (DefaultTableModel)tableAbsen.getModel();
         model.setRowCount(0);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,10 +72,10 @@ public class AbsensiForm extends javax.swing.JFrame {
 
         labelNamaSiswa.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         labelNamaSiswa.setForeground(new java.awt.Color(255, 255, 255));
-        labelNamaSiswa.setText("Nama Siswa");
+        labelNamaSiswa.setText("id_Siswa");
         getContentPane().add(labelNamaSiswa, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, -1, -1));
 
-        cmbNamaSiswa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "Ahmad Fauzi", "Siti Aisyah", "Muhammad Rizky", "Nabila Putri", "Andi Saputra", "Dewi Lestari", "Fajar Ramadhan", "Nurul Hidayah", "Budi Santoso", "Rina Oktaviani", "Yoga Pratama", "Aulia Rahma", "Iqbal Maulana", "Putri Amelia", "Reza Akbar", "Annisa Zahra", "Dimas Nugraha", "Citra Maharani", "Arif Setiawan", "Nadya Safitri", "Rfi Hidayat", "Laila Fitriani", "Galang Prakoso", "Maya Prakoso", "Maya Salsabila", "Alvin Saputra", " ", " " }));
+        cmbNamaSiswa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", " ", " " }));
         getContentPane().add(cmbNamaSiswa, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 151, -1));
 
         labelTanggal.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -112,11 +120,11 @@ public class AbsensiForm extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Nama", "Tanggal", "Status", "Kelas"
+                "id_siswa", "Tanggal", "Status", "Kelas"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -141,21 +149,29 @@ public class AbsensiForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSimpanActionPerformed
-    String nama = cmbNamaSiswa.getSelectedItem().toString();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    String tanggal = sdf.format(jDateChooser1.getDate());
-    String status = cmbStatus.getSelectedItem().toString();
-    String kelas = jComboBox1.getSelectedItem().toString();
+    try {
 
-    model.addRow(new Object[]{
-        nama,
-        tanggal,
-        status,
-        kelas
-    });
+        String sql = "INSERT INTO absensi(id_siswa,tanggal,status,kelas) VALUES(?,?,?,?)";
 
-    JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+        PreparedStatement ps = conn.prepareStatement(sql);
 
+        ps.setInt(1, Integer.parseInt(cmbNamaSiswa.getSelectedItem().toString()));
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        ps.setString(2, sdf.format(jDateChooser1.getDate()));
+        ps.setString(3, cmbStatus.getSelectedItem().toString());
+        ps.setString(4, jComboBox1.getSelectedItem().toString());
+
+        ps.executeUpdate();
+        tampilData();
+        bersih();
+
+        JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, e.getMessage());
+    } 
     }//GEN-LAST:event_buttonSimpanActionPerformed
 
     private void buttonHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusActionPerformed
@@ -196,17 +212,44 @@ public class AbsensiForm extends javax.swing.JFrame {
     } else {
         JOptionPane.showMessageDialog(this, "Pilih data yang akan diubah");
     }
-}   
+    }
     private void bersih() {
     cmbNamaSiswa.setSelectedIndex(0);
     cmbStatus.setSelectedIndex(0);
     jComboBox1.setSelectedIndex(0);
     jDateChooser1.setDate(null);
 }
+private void tampilData() {
 
-    private void tampilData() {
+    model.setRowCount(0);
 
+    try {
 
+        String sql = "SELECT * FROM absensi";
+
+        PreparedStatement ps = conn.prepareStatement(sql);
+
+        ResultSet rs = ps.executeQuery();
+
+        while(rs.next()){
+
+            model.addRow(new Object[]{
+
+                rs.getInt("id_siswa"),
+                rs.getString("tanggal"),
+                rs.getString("status"),
+                rs.getString("kelas")
+
+            });
+
+        }
+
+    } catch(Exception e){
+
+        JOptionPane.showMessageDialog(this, e.getMessage());
+
+    }
+  
     }//GEN-LAST:event_buttonUbahActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
