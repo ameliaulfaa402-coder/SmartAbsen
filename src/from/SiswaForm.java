@@ -60,6 +60,10 @@ public class SiswaForm extends javax.swing.JFrame {
         buttonUbah = new javax.swing.JButton();
         buttonHapus = new javax.swing.JButton();
         buttonKembali = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableSiswa = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -92,41 +96,53 @@ public class SiswaForm extends javax.swing.JFrame {
         labelKelas.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         labelKelas.setForeground(new java.awt.Color(255, 255, 255));
         labelKelas.setText("id_kelas");
-        getContentPane().add(labelKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
+        getContentPane().add(labelKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
 
         cmbKelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "1", "2", "3", "4", "5", "6", " " }));
         cmbKelas.addActionListener(this::cmbKelasActionPerformed);
-        getContentPane().add(cmbKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 150, -1));
+        getContentPane().add(cmbKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 150, -1));
 
         buttonSimpan.setText("Simpan");
         buttonSimpan.addActionListener(this::buttonSimpanActionPerformed);
-        getContentPane().add(buttonSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
+        getContentPane().add(buttonSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
 
         buttonUbah.setText("Ubah");
         buttonUbah.addActionListener(this::buttonUbahActionPerformed);
-        getContentPane().add(buttonUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 70, -1));
+        getContentPane().add(buttonUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 70, -1));
 
         buttonHapus.setText("Hapus");
         buttonHapus.addActionListener(this::buttonHapusActionPerformed);
-        getContentPane().add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 70, -1));
+        getContentPane().add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 70, -1));
 
         buttonKembali.setText("Kembali");
         buttonKembali.addActionListener(this::buttonKembaliActionPerformed);
-        getContentPane().add(buttonKembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
+        getContentPane().add(buttonKembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, -1, -1));
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Jenis_kelamin");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 150, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "L", "P" }));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 150, -1));
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("alamat");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 150, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 150, -1));
 
         tableSiswa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "NISN", "Nama ", "id_kelas"
+                "NISN", "Nama ", "jenis_kelamin", "alamat", "id_kelas"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -150,17 +166,17 @@ public class SiswaForm extends javax.swing.JFrame {
 
     try{
 
-    String sql="INSERT INTO siswa(nis,nama,id_kelas) VALUES(?,?,?)";
+    String sql="INSERT INTO siswa(nis,nama,jenis_kelamin, alamat, id_kelas) VALUES(?,?,?,?,?)";
 
-    PreparedStatement ps=conn.prepareStatement(sql);
+    PreparedStatement ps = conn.prepareStatement(sql);
 
-    ps.setString(1,fieldNISN.getText());
+ps.setString(1, fieldNISN.getText());
+ps.setString(2, fieldNamaLengkap.getText());
+ps.setString(3, jComboBox1.getSelectedItem().toString());
+ps.setString(4, jTextField2.getText());
+ps.setInt(5, cmbKelas.getSelectedIndex());
 
-    ps.setString(2,fieldNamaLengkap.getText());
-
-    ps.setInt(3,cmbKelas.getSelectedIndex());
-
-    ps.executeUpdate();
+ps.executeUpdate();
 
     JOptionPane.showMessageDialog(this,"Data berhasil disimpan");
 
@@ -181,7 +197,9 @@ public class SiswaForm extends javax.swing.JFrame {
 
         model.setValueAt(fieldNISN.getText(), baris, 0);
         model.setValueAt(fieldNamaLengkap.getText(), baris, 1);
-        model.setValueAt(cmbKelas.getSelectedItem().toString(), baris, 2);
+        model.setValueAt(jComboBox1.getSelectedItem().toString(), baris, 2);
+        model.setValueAt(jTextField2.getText(), baris, 3);
+        model.setValueAt(cmbKelas.getSelectedItem().toString(), baris, 4);
 
         JOptionPane.showMessageDialog(this, "Data berhasil diubah");
 
@@ -232,9 +250,11 @@ public class SiswaForm extends javax.swing.JFrame {
         while (rs.next()) {
 
             model.addRow(new Object[]{
-                rs.getString("nis"),
-                rs.getString("nama"),
-                rs.getString("id_kelas")
+            rs.getString("nis"),
+            rs.getString("nama"),
+            rs.getString("jenis_kelamin"),
+            rs.getString("alamat"),
+            rs.getString("id_kelas")
             });
 
         }
@@ -278,9 +298,13 @@ public class SiswaForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbKelas;
     private javax.swing.JTextField fieldNISN;
     private javax.swing.JTextField fieldNamaLengkap;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel labelDataSiswa;
     private javax.swing.JLabel labelKelas;
     private javax.swing.JLabel labelNISN;
