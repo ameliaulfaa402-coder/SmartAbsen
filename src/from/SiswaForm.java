@@ -95,10 +95,10 @@ public class SiswaForm extends javax.swing.JFrame {
 
         labelKelas.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         labelKelas.setForeground(new java.awt.Color(255, 255, 255));
-        labelKelas.setText("id_kelas");
+        labelKelas.setText("kelas");
         getContentPane().add(labelKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
 
-        cmbKelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "1", "2", "3", "4", "5", "6", " " }));
+        cmbKelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "X IPA 1", "XI IPA 1", "XII IPA 1", "X IPA 2", "XI IPA 2", "XII IPA 2", " ", " " }));
         cmbKelas.addActionListener(this::cmbKelasActionPerformed);
         getContentPane().add(cmbKelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 150, -1));
 
@@ -138,15 +138,20 @@ public class SiswaForm extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "NISN", "Nama ", "jenis_kelamin", "alamat", "id_kelas"
+                "NISN", "Nama ", "jenis_kelamin", "alamat", "kelas"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tableSiswa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableSiswaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tableSiswa);
@@ -164,60 +169,69 @@ public class SiswaForm extends javax.swing.JFrame {
 
     private void buttonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSimpanActionPerformed
 
-    try{
-
-    String sql="INSERT INTO siswa(nis,nama,jenis_kelamin, alamat, id_kelas) VALUES(?,?,?,?,?)";
+    try {
+    String sql = "INSERT INTO siswa(nis,nama,jenis_kelamin,alamat,kelas) VALUES(?,?,?,?,?)";
 
     PreparedStatement ps = conn.prepareStatement(sql);
 
-ps.setString(1, fieldNISN.getText());
-ps.setString(2, fieldNamaLengkap.getText());
-ps.setString(3, jComboBox1.getSelectedItem().toString());
-ps.setString(4, jTextField2.getText());
-ps.setInt(5, cmbKelas.getSelectedIndex());
+    ps.setString(1, fieldNISN.getText());
+    ps.setString(2, fieldNamaLengkap.getText());
+    ps.setString(3, jComboBox1.getSelectedItem().toString());
+    ps.setString(4, jTextField2.getText());
+    ps.setString(5, cmbKelas.getSelectedItem().toString());
 
-ps.executeUpdate();
+    ps.executeUpdate();
 
-    JOptionPane.showMessageDialog(this,"Data berhasil disimpan");
+    JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
 
     tampilData();
 
-    }catch(Exception e){
-
-    JOptionPane.showMessageDialog(this,e.getMessage());
-
+} catch (Exception e) {
+    e.printStackTrace();
+    JOptionPane.showMessageDialog(this, e.getMessage());
 }
     }//GEN-LAST:event_buttonSimpanActionPerformed
 
     private void buttonUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUbahActionPerformed
+       try {
+    String sql = "UPDATE siswa SET nama=?, jenis_kelamin=?, alamat=?, kelas=? WHERE nis=?";
 
-    int baris = tableSiswa.getSelectedRow();
+    PreparedStatement ps = conn.prepareStatement(sql);
 
-    if (baris != -1) {
+    ps.setString(1, fieldNamaLengkap.getText());
+    ps.setString(2, jComboBox1.getSelectedItem().toString());
+    ps.setString(3, jTextField2.getText());
+    ps.setInt(4, cmbKelas.getSelectedIndex());
+    ps.setString(5, fieldNISN.getText());
 
-        model.setValueAt(fieldNISN.getText(), baris, 0);
-        model.setValueAt(fieldNamaLengkap.getText(), baris, 1);
-        model.setValueAt(jComboBox1.getSelectedItem().toString(), baris, 2);
-        model.setValueAt(jTextField2.getText(), baris, 3);
-        model.setValueAt(cmbKelas.getSelectedItem().toString(), baris, 4);
+    ps.executeUpdate();
 
-        JOptionPane.showMessageDialog(this, "Data berhasil diubah");
+    JOptionPane.showMessageDialog(this, "Data berhasil diubah");
 
-    } else {
-        JOptionPane.showMessageDialog(this, "Pilih data terlebih dahulu");
-    }
+    tampilData();
 
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(this, e.getMessage());
+}
     }//GEN-LAST:event_buttonUbahActionPerformed
 
     private void buttonHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusActionPerformed
-    int baris = tableSiswa.getSelectedRow();
+    try {
+    String sql = "DELETE FROM siswa WHERE nis=?";
 
-    if (baris != -1) {
-        model.removeRow(baris);
-        JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
-    } else {
-        JOptionPane.showMessageDialog(null, "Pilih data terlebih dahulu");
-    }
+    PreparedStatement ps = conn.prepareStatement(sql);
+
+    ps.setString(1, fieldNISN.getText());
+
+    ps.executeUpdate();
+
+    JOptionPane.showMessageDialog(this, "Data berhasil dihapus");
+
+    tampilData();
+
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(this, e.getMessage());
+}
     }//GEN-LAST:event_buttonHapusActionPerformed
 
     private void buttonKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonKembaliActionPerformed
@@ -235,6 +249,17 @@ ps.executeUpdate();
     private void cmbKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKelasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbKelasActionPerformed
+
+    private void tableSiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableSiswaMouseClicked
+ 
+    int baris = tableSiswa.getSelectedRow();
+
+    fieldNISN.setText(model.getValueAt(baris, 0).toString());
+    fieldNamaLengkap.setText(model.getValueAt(baris, 1).toString());
+    jComboBox1.setSelectedItem(model.getValueAt(baris, 2).toString());
+    jTextField2.setText(model.getValueAt(baris, 3).toString());
+    cmbKelas.setSelectedItem(model.getValueAt(baris, 4).toString());
+    }//GEN-LAST:event_tableSiswaMouseClicked
     private void tampilData() {
 
     model.setRowCount(0);
@@ -254,7 +279,7 @@ ps.executeUpdate();
             rs.getString("nama"),
             rs.getString("jenis_kelamin"),
             rs.getString("alamat"),
-            rs.getString("id_kelas")
+            rs.getString("kelas")
             });
 
         }
@@ -264,6 +289,7 @@ ps.executeUpdate();
         JOptionPane.showMessageDialog(this, e.getMessage());
 
     }
+ 
     }
     /**
      * @param args the command line arguments

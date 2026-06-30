@@ -32,6 +32,8 @@ public class KelasForm extends javax.swing.JFrame implements KelolaData {
         setLocationRelativeTo(null);
         
         conn = koneksi.getKoneksi();
+        
+        tampilData();
     }
 
     /**
@@ -85,6 +87,11 @@ public class KelasForm extends javax.swing.JFrame implements KelolaData {
                 "ID Kelas", "Nama Kelas"
             }
         ));
+        tableKelas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableKelasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableKelas);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 340, 210));
@@ -258,6 +265,13 @@ public class KelasForm extends javax.swing.JFrame implements KelolaData {
         dashboard.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_buttonKembaliActionPerformed
+
+    private void tableKelasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKelasMouseClicked
+        int baris = tableKelas.getSelectedRow();
+
+    fieldIdKelas.setText(tableKelas.getValueAt(baris, 0).toString());
+    fieldNamaKelas.setText(tableKelas.getValueAt(baris, 1).toString());
+    }//GEN-LAST:event_tableKelasMouseClicked
 
     /**
      * @param args the command line arguments
