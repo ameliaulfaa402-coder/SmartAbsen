@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2026 at 10:26 AM
+-- Generation Time: Jun 30, 2026 at 12:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -32,18 +32,16 @@ CREATE TABLE `absensi` (
   `id_siswa` int(11) NOT NULL,
   `tanggal` date NOT NULL,
   `status` enum('Hadir','Izin','Sakit','Alfa') NOT NULL,
-  `keterangan` varchar(100) DEFAULT NULL
+  `kelas` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `absensi`
 --
 
-INSERT INTO `absensi` (`id_absensi`, `id_siswa`, `tanggal`, `status`, `keterangan`) VALUES
-(1, 1, '2026-06-11', 'Hadir', '-'),
-(2, 2, '2026-06-11', 'Izin', 'Acara keluarga'),
-(3, 3, '2026-06-11', 'Sakit', 'Demam'),
-(4, 4, '2026-06-11', 'Alfa', 'Tanpa keterangan');
+INSERT INTO `absensi` (`id_absensi`, `id_siswa`, `tanggal`, `status`, `kelas`) VALUES
+(1, 1, '2026-06-01', 'Sakit', 'X IPA 1'),
+(2, 2, '2026-06-01', 'Hadir', 'X IPA 1');
 
 -- --------------------------------------------------------
 
@@ -80,39 +78,38 @@ CREATE TABLE `siswa` (
   `nama` varchar(100) NOT NULL,
   `jenis_kelamin` enum('L','P') NOT NULL,
   `alamat` text DEFAULT NULL,
-  `id_kelas` int(11) DEFAULT NULL
+  `kelas` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`id_siswa`, `nis`, `nama`, `jenis_kelamin`, `alamat`, `id_kelas`) VALUES
-(1, '1001', 'Ahmad Fauzi', 'L', 'Bandung', 1),
-(2, '1002', 'Siti Aisyah', 'P', 'Bogor', 1),
-(3, '1003', 'Muhammad Rizki', 'L', 'Yogyakarta', 1),
-(4, '1004', 'Nabila Putri', 'P', 'Jakarta', 1),
-(5, '1005', 'Andi Saputra', 'L', 'Lampung', 2),
-(6, '1006', 'Dewi Lestari', 'P', 'Jakarta', 2),
-(7, '1007', 'Fajar Ramadhan', 'L', 'Jakarta', 2),
-(8, '1008', 'Nurul Hidayah', 'P', 'Jakarta', 2),
-(9, '1009', 'Budi Santoso', 'L', 'Jakarta', 3),
-(10, '1010', 'Rina Oktavia', 'P', 'Sumatra', 3),
-(11, '1011', 'Yoga Pratama', 'L', 'Jakarta', 3),
-(12, '1012', 'Aulia Rahma', 'P', 'Jakarta', 3),
-(13, '1013', 'Iqbal Maulana', 'L', 'Jakarta', 4),
-(14, '1014', 'Putri Amelia', 'P', 'Bogor', 4),
-(15, '1015', 'Reza Akbar', 'L', 'Bogor', 4),
-(16, '1016', 'Annisa Zahra', 'P', 'Jakarta', 4),
-(17, '1017', 'Dimas Nugraha', 'L', 'Jakarta', 5),
-(18, '1018', 'Citra Maharani', 'P', 'Surabaya', 5),
-(19, '1019', 'Arif Setiawan', 'L', 'Lampung', 5),
-(20, '1020', 'Nadya Safitri', 'P', 'Jakarta', 5),
-(21, '1021', 'Rafi Hidayat', 'L', 'Jakarta', 6),
-(22, '1022', 'Laila Fitriani', 'P', 'Surabaya', 6),
-(23, '1023', 'Galang Prakoso', 'L', 'Malang', 6),
-(24, '1024', 'Maya Salsabila', 'P', 'Jakarta', 6),
-(25, '1025', 'Alvin Saputra', 'L', 'Jakarta', 6);
+INSERT INTO `siswa` (`id_siswa`, `nis`, `nama`, `jenis_kelamin`, `alamat`, `kelas`) VALUES
+(1, '1001', 'Tria Eka Ermanto', 'P', 'Jakarta', '1'),
+(2, '1002', 'Wafik Nisah', 'P', 'Jakarta', 'X IPA 1'),
+(3, '1003', 'Amelia', 'P', 'Jakarta', 'X IPA 1'),
+(4, '1004', 'Ahmad Joko', 'L', 'Bogor', 'X IPA 1'),
+(5, '1005', 'Siti Aisyah', 'P', 'Malang', 'X IPA 1'),
+(6, '1006', 'Muhammad Malika', 'L', 'Malaysia', 'X IPA 1'),
+(7, '1007', 'Yusuf Ali ', 'L', 'Arab', 'X IPA 1'),
+(8, '1008', 'Marpuah', 'P', 'Bandung', 'XI IPA 1'),
+(9, '1009', 'Anton Sekeleton', 'L', 'Bandung', 'XI IPA 1'),
+(10, '1010', 'Andi Pratama', 'L', 'Bandung', 'XI IPA 1'),
+(11, '1011', 'Muhammad Ahmad', 'L', 'Cikarang', 'XI IPA 1'),
+(12, '1012', ' Siti Arabiyah', 'P', 'Madinah', 'XI IPA 1'),
+(13, '1013', ' Citra Kirana', 'P', 'Subang', 'XI IPA 1'),
+(14, '1014', ' Wardany', 'L', 'Subang', 'XI IPA 1'),
+(15, '1015', ' Sayang', 'P', 'Jakarta', 'XII IPA 1'),
+(19, '1016', 'Patrik', 'L', 'Lampung', 'XII IPA 1'),
+(21, '1017', 'Doraemon', 'L', 'Badui', 'XII IPA 1'),
+(22, '1018', 'Amelia Ulfa', 'P', 'Singapura', 'XII IPA 1'),
+(23, '1019', 'Hilmilah', 'P', 'Bogor', 'XII IPA 1'),
+(24, '1020', 'Mamluah', 'P', 'Madura', 'XII IPA 1'),
+(25, '1021', 'Mirza', 'P', 'Madura', 'XII IPA 1'),
+(26, '1022', 'Fina Rahmatika', 'P', 'Madura', 'X IPA 2'),
+(27, '1023', 'Alya', 'P', 'Madura', 'X IPA 2'),
+(28, '1024', 'Rifa', 'P', 'Surabaya', 'X IPA 2');
 
 -- --------------------------------------------------------
 
@@ -132,7 +129,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `username`, `password`, `role`) VALUES
-(1, 'TU', 'TU26', 'adminTU');
+(1, 'TU', 'TU2026', 'adminTU');
 
 --
 -- Indexes for dumped tables
@@ -157,7 +154,7 @@ ALTER TABLE `kelas`
 ALTER TABLE `siswa`
   ADD PRIMARY KEY (`id_siswa`),
   ADD UNIQUE KEY `nis` (`nis`),
-  ADD KEY `id_kelas` (`id_kelas`);
+  ADD KEY `id_kelas` (`kelas`);
 
 --
 -- Indexes for table `users`
@@ -174,19 +171,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -203,12 +200,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `absensi`
   ADD CONSTRAINT `absensi_ibfk_1` FOREIGN KEY (`id_siswa`) REFERENCES `siswa` (`id_siswa`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `siswa`
---
-ALTER TABLE `siswa`
-  ADD CONSTRAINT `siswa_ibfk_1` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
